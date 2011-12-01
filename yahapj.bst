@@ -1,5 +1,6 @@
 % yahapj.bst -- yet another ApJ bibtex style file
 % Git SHA1 hash: $Id$
+% Reference repository: https://github.com/pkgw/yahapj/
 %
 % The main features compared to other ApJ style files is that ArXiV
 % and DOI links are added. ArXiV information is only shown for those
