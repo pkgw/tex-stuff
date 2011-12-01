@@ -1,49 +1,54 @@
-yahapj.bst -- yet another (h)ApJ bibtex style file
+yahapj.bst — yet another (h)ApJ bibtex style file
 ===============================================
 
 This Git repository contains `yahapj.bst`, a BibTeX style file for
 creating bibliographies in the format used by the Astrophysical
-Journal.
+Journal. To use it:
 
-Several such style files already exist, but they have various
-shortcomings. It is also unclear which versions of which files are
-derived from each other. It is hoped that by importing a version of
-this file into Git, improvements can be shared more easily (see
-below).
+1. Use BibTeX for your bibliography. Help with this is beyond
+   the scope of this file.
+2. Copy the file `yahapj.bst` to the directory containing your
+   LaTeX file
+3. Make sure your LaTeX file uses the `hyperref` package. For
+   attractive links, we suggest:
+   ```
+   \usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+   ```
+4. Before your `\bibliography{}` command, put:
+   ```
+   \bibliographystyle{yahapj}
+   ```
+5. That’s all there is to it!
 
-Features
---------
+The features of `yahapj.bst` are:
 
-The style file is based off of the venerable `apj.bst` with several
-changes:
-
++ Your bibliography will look how it's supposed to for articles
+  submitted to the Astrophysical Journal.
 + ArXiV identifiers and links are included for those entries
   that don't contain any more formal reference information.
 + DOI links are embedded if available.
 + Trailing plus signs in page numbers are removed.
 
-Because links are embedded, your LaTeX file must use the hyperref
-package. To get links that aren't butt-ugly, we suggest:
-
-```
-\usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
-```
-
 Making & Sharing Improvements
 -----------------------------
 
-If you'd like to make changes to the style file, you may run into the
-minor problem that BibTeX style files are implemented in a bizarre
-nonce language. The best reference I've been able to find is "Tame the
-BeaST," by Nicolas Markey (markey@lsv.ens-cachan.fr), currently
-available at:
-
-http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf
+The style file is derived from the venerable `apj.bst` and adds some
+features which are mostly cribbed from other hacked versions of this
+file. We hope that by importing a version of this file into Git,
+improvements can be shared more easily.
 
 If you make changes to this file that you'd like to share, just clone
 the Git repository and commit away! At least one incarnation of the
 Git repository is accessible on GitHub, with all of the social coding
 features that that entails, at https://github.com/pkgw/yahapj/.
+
+If you'd like to make changes to the style file, you may run into the
+minor problem that BibTeX style files are implemented in a bizarre
+nonce language. The best reference I've been able to find is “Tame the
+BeaST,” by Nicolas Markey (markey@lsv.ens-cachan.fr), currently
+available at:
+
+http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf
 
 Provenance
 ----------
@@ -66,10 +71,14 @@ The seed file adds in the changes in `hapj.bst` provided by arxiv.org:
 
 http://arxiv.org/hypertex/bibstyles/
 
-which were added by Varendra (Alvin) Das.
+which were added by Varendra (Alvin) Das. The version of the file
+provided by arxiv.org is based on what is effectively revision 1.5
+of the ADS `apj.bst`.
 
 It also incorporates new-style arxiv identifiers from Jacques
-Distler's utphys.bst.
+Distler's `utphys.bst`:
+
+http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
 
 These changes were collected and some further cleanups were 
 made by Peter K. G. Williams.
@@ -85,9 +94,9 @@ to the public domain.
 
 Note that the original file did come with the following notice:
 
-  This file may be used for non-profit purposes. It may not be
-  distributed in exchange for money, other than distribution costs.
-  The author provides it "as is" and does not guarantee it in any way.
+> This file may be used for non-profit purposes. It may not be
+> distributed in exchange for money, other than distribution costs.
+> The author provides it “as is” and does not guarantee it in any way.
 
 Contributors
 ------------
