@@ -29,8 +29,16 @@ package. To get links that aren't butt-ugly, we suggest:
 \usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
 ```
 
-Sharing Improvements
---------------------
+Making & Sharing Improvements
+-----------------------------
+
+If you'd like to make changes to the style file, you may run into the
+minor problem that BibTeX style files are implemented in a bizarre
+nonce language. The best reference I've been able to find is "Tame the
+BeaST," by Nicolas Markey (markey@lsv.ens-cachan.fr), currently
+available at:
+
+http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf
 
 If you make changes to this file that you'd like to share, just clone
 the Git repository and commit away! At least one incarnation of the
