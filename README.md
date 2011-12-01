@@ -115,6 +115,7 @@ unlimited permission to copy, distribute, and modify it.
 Contributors
 ------------
 
++ Alberto Accomazzi (aaccomazzi@cfa.harvard.edu)
 + Jonathan E. Baker (jbaker@astro.berkeley.edu)
 + Patrick W. Daly (daly@linmpi.mpg.de)
 + Varendra (Alvin) Das (alvin@iiap.res.in)
