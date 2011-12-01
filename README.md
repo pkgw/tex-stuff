@@ -83,8 +83,8 @@ http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
 These changes were collected and some further cleanups were 
 made by Peter K. G. Williams.
 
-Copyright Status
-----------------
+Copyright Status of `yahapj.bst`
+--------------------------------
 
 The original `merlin.mbs` claimed copyright from 1994-1998 for
 Patrick W. Daly. Subsequent files have been copied and modified
@@ -92,11 +92,25 @@ by numerous parties all over the Internet. In assembling this
 repository, I have deemed it fair to dedicate the style file
 to the public domain.
 
-Note that the original file did come with the following notice:
+Note that the original file did come with the following notice
+from within `merlin.mbs`:
 
 > This file may be used for non-profit purposes. It may not be
 > distributed in exchange for money, other than distribution costs.
 > The author provides it “as is” and does not guarantee it in any way.
+
+It is not clear to me (Peter Williams) if this clause applies to the
+generated BibTeX style file, or only the source `merlin.mbs` file. If
+the notice does not apply to `yahapj.bst`, or `yahapj.bst` is treated
+as being in the public domain, the “non-profit” clause is inoperative,
+and you may attempt to distribute it in exchange for money. Have fun
+with that.
+
+Copyright Status of This File
+-----------------------------
+
+This README file is also dedicated to the public domain. You have
+unlimited permission to copy, distribute, and modify it.
 
 Contributors
 ------------
