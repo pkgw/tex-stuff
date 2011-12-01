@@ -1,6 +1,10 @@
 
 %% $Log: apj.bst,v $
 %%
+%% Revision 1.7  2011/11/21 13:10:12  alberto
+%% Implemented new ApJ formatting rules: for papers with more than
+%% 5 authors, print first 3 followed by "et al."
+%%
 %% Revision 1.6  2009/05/18 15:13:02  alberto
 %% Fixed sorting of references with truncated lists of authors
 %% in sort.format.names
@@ -396,60 +400,58 @@ MACRO {toplas} {"ACM Trans. Prog. Lang. Syst."}
 
 MACRO {tcs} {"Theoretical Comput. Sci."}
 
-INTEGERS { nameptr namesleft numnames }
+INTEGERS { nameptr namesleft numnames numtrunc }
 
 FUNCTION {format.names}
 { 's :=
+  #0 'numtrunc :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
-%% AA 3/19/2009
-%% This fix courtesy of Craig Wiegert <wigie@alum.mit.edu>
-%% and comes by way of Tim Robishaw; a similar patch has
-%% also been contributed by Andy Marble <amarble@as.arizona.edu>
-%% Added the following two lines to make 8 author upper limit to
-%% reference list, based on what is found in aas.bst.
-  numnames #8 >
-    { s #1 "{vv~}{ll}{, jj}{, f.,}" format.name$ " {et~al.}" * }
-    { { namesleft #0 > }
-      { s nameptr
-	"{vv~}{ll}{, jj}{, f.}" format.name$
-	't :=
-	nameptr #1 >
-	  {
-            namesleft #1 >
-              { ", " * t * }
+  numnames #5 > 
+    { #3 'numtrunc := }
+    {}
+  if$
+  { namesleft #0 > }
+  { s nameptr
+    "{vv~}{ll}{, jj}{, f.}" format.name$
+    't :=
+    nameptr #1 >
+      {
+	nameptr #1 - numtrunc = 
+	  { 
+	    #1 'namesleft :=
+	    "others" 't :=
+	  }
+	  {}
+	if$
+
+        namesleft #1 >
+          { ", " * t * }
+          {
+            numnames #1 >
+              { "," * }
+              'skip$
+            if$
+            s nameptr "{ll}" format.name$ duplicate$ "others" =
+              { 't := }
+              { pop$ }
+            if$
+            t "others" =
               {
-                  numnames #1 >
-%% AA 6/18/2002
-%% This fix courtesy of Tim Robishaw <robishaw@astron.berkeley.edu>:
-%% Original version left comma out after initials of first author
-%% for two-author papers!!
-%%                numnames #2 >
-                  { "," * }
-                  'skip$
-                if$
-                s nameptr "{ll}" format.name$ duplicate$ "others" =
-                  { 't := }
-                  { pop$ }
-                if$
-                t "others" =
-                  {
-                    " {et~al.}" *
-                  }
-                  { " \& " * t * }
-                if$
+                " {et~al.}" *
               }
+              { " \& " * t * }
             if$
           }
-          't
         if$
-        nameptr #1 + 'nameptr :=
-        namesleft #1 - 'namesleft :=
       }
-    while$
-    }
-  if$
+      't
+    if$
+    nameptr #1 + 'nameptr :=
+    namesleft #1 - 'namesleft :=
+  }
+  while$
 }
 
 FUNCTION {format.names.ed}
