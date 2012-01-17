@@ -1105,7 +1105,8 @@ FUNCTION {incollection}
   author format.key output
   name.or.dash
   format.date "year" output.check
-  bbl.in " " * booktitle format.full.book.spec * output
+  bbl.in " " * booktitle format.full.book.spec *
+  maybe.doi.link.prepend maybe.doi.link.end output
   format.publisher
   format.pages "pages" output.check
   format.eprint output
