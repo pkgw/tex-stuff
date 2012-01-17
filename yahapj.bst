@@ -765,17 +765,6 @@ FUNCTION {multi.page.check}
   multiresult
 }
 
-FUNCTION {format.pages}
-{ pages empty$
-    { "" }
-    { pages multi.page.check
-        { pages n.dashify }
-        { pages }
-      if$
-    }
-  if$
-}
-
 FUNCTION {string.length}
 { % Copied from "Taming the BeaST", by Nicolas Markey, Fig 4
   #1 'work.strlen :=
@@ -797,6 +786,13 @@ FUNCTION {first.page}
   duplicate$ duplicate$ string.length #1 substring$ "+" =
     { duplicate$ string.length #1 - #1 swap$ substring$ }
     { }
+  if$
+}
+
+FUNCTION {format.pages}
+{ pages empty$
+    { "" }
+    { pages first.page }
   if$
 }
 
