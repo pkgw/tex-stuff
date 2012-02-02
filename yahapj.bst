@@ -575,10 +575,10 @@ FUNCTION {format.eprint}
     { "" }
      { archive empty$
           {"\href{http://arxiv.org/abs/" eprint * "}" *
-             "{{\ttfamily " * format.archive * eprint *
+             "{{\sffamily " * format.archive * eprint *
               format.primaryClass * "}}" *}
           {"\href{" archive *  "/" * eprint * "}" *
-             "{{\ttfamily " * format.archive * eprint *
+             "{{\sffamily " * format.archive * eprint *
               format.primaryClass * "}}" *}
        if$
      }
