@@ -80,7 +80,7 @@ Distler's `utphys.bst`:
 
 http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
 
-These changes were collected and some further cleanups were 
+These changes were collected and some further cleanups were
 made by Peter K. G. Williams.
 
 Copyright Status of `yahapj.bst`

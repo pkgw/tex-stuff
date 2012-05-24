@@ -976,7 +976,7 @@ FUNCTION {format.full.book.spec} % The title should be on the stack.
 	    { " No." number tie.or.space.connect * }
 	    if$
 	}
-	{ series ", Vol." volume tie.or.space.connect *  
+	{ series ", Vol." volume tie.or.space.connect *
           ", " * swap$ format.ed.booktitle *
 	  number empty$
 	    'skip$
