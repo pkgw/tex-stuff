@@ -1,0 +1,78 @@
+Journal paper:
+
+  Martín, E. L., Rebolo, R., & Zapatero Osorio, M. R. 1996, ApJ, 469, 706
+  @article: author year journal volume pages(eid)
+
+  Aguirre, J. E., et al. 2011, ApJS, 192, 4
+
+Book:
+
+  Donat, W., III, & Boksenberg, A. J. 1993, The Astronomical Almanac
+    for the Year 1994, Vol. 2 (2nd ed.; Washington, DC: GPO)
+  @book: author year title volume edition address
+    publisher [url (see Instr Doc)]
+
+Proceedings (@inproceedings; 1993ASPC...36..345S; ADS record
+does not contain sufficient information):
+
+  Salpeter, E. E., & Wasserman, I. M. 1993, in ASP Conf. Ser. 36,
+    Planets around Pulsars, ed. J. A. Phillips, S. E. Thorsett, &
+    S. R. Kulkarni (San Francisco, CA: ASP), 345
+  @inproceedings: author year booktitle(series?) [volume] editor [edition]
+    address(location?) publisher(organization?) pages(eid)
+
+Electronic-only proceedings (@inproceedings):
+
+  Gomez, M. 2000, in Cosmology 2000, ed. M.C. Bento, O. Bertolami, &
+    L. Teodoro (Lisbon: Inst. Superio Tecnico), 57,
+    http://alfa.ist.utl.pt/~bento/cosmo2000/proc/proceedings.html
+  @inproceedings: author year booktitle(series?) [volume] editor [edition]
+    location(address?) organization(publisher?) pages url
+
+"Paper or Chapter in an Edited Collection" (@incollection):
+
+  Huchra, J. P. 1986, in Inner Space/Outer Space, ed. E. W. Kolb et al.
+    (Chicago, IL: Univ. Chicago Press), 65
+  @incollection: author year booktitle(series?) [volume] editor [edition]
+    address publisher pages
+
+Star Catalogs (appears compatible with @book, which is what ADS returns,
+with publishing metadata in 'booktitle' field rather than broken down
+correctly; 1982bsc..book.....H):
+
+  Hoffleit, D. 1982, The Bright Star Catalogue (New Haven, CT: Yale
+    Univ. Obs.)
+
+Electronic Newsletters (ADS returns ATels and GCNs as @article; does
+not provide the url, and lists the number as the volume, with pages = 1;
+2004GCN..2544....1B):
+
+  Hermoso, D. 1996, ESA IUE Electron. Newsl. 46,
+    http://www.vilspa.esa.es/iue/nl/newsl_46.html
+  Bersier, D., et al. 2004, GCN Circ. 2544,
+    http://gcn.gsfc.nasa.gov/gcn/gcn3/2544.gcn3
+  @article: author year journal(series?) [ads:volume] url
+
+Instrument Documentation (appears compatible with @book):
+
+  Gussenhoven, M. S., Mullen, E. G., & Sagalyn, R. C. 1985,
+    CRRES/SPACERAD Instrument Description, Document
+    AFGL-TR-85-0017 (Hanscom, MA: Air Force Geophys. Lab.)
+  {\it Spitzer} Science Center. 2004, {\it Spitzer} Observers'
+    Manual (Pasadena, CA: SSC), http://sirtf.caltech.edu/SSC/obs/
+
+Preprints (@article; ADS -> journal = "ArXiv e-prints"):
+
+  Smith, A. B. 1999, arXiv:astro-ph/9812345
+  Smith, A. B. 2007, arXiv:0702.1234
+  Lockwood, G. W., & Skiff, B. A. 1988, Air Force Geophys.
+    Lab. preprint (AFGL-TR-88-0221)
+  Smith, A. B. 1999, AJ, in press (arXiv:astro-ph/9912345))
+  @article: author year [note] archive archivePrefix eprint
+
+Submitted / in press (@article):
+
+  Wolk, S. J., & Walter, F. M. 1999, AJ, submitted
+  Wolk, S. J., & Walter, F. M. 1999, AJ, in press
+  Smith, A. B. 1999, AJ, in press (arXiv:astro-ph/9912345))
+  @article: author year note [archive archivePrefix eprint]
