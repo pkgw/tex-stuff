@@ -1,33 +1,35 @@
 yahapj.bst — yet another (h)ApJ bibtex style file
-===============================================
+=================================================
 
-This Git repository contains `yahapj.bst`, a BibTeX style file for
-creating bibliographies in the format used by the Astrophysical
-Journal. To use it:
+This Git repository contains `yahapj.bst`, a BibTeX style file for creating
+bibliographies in the format used by the Astrophysical Journal. It largely
+operates like `apj.bst`, in that your bibliography will closely resemble what
+is required for articles in the Astrophysical Journal. However it has a few
+nice new features:
 
-1. Use BibTeX for your bibliography. Help with this is beyond
-   the scope of this file.
-2. Copy the file `yahapj.bst` to the directory containing your
-   LaTeX file
-3. Make sure your LaTeX file uses the `hyperref` package. For
-   attractive links, we suggest:
++ ArXiV identifiers and links are included for those entries
+  that don't contain any more formal reference information.
++ DOI links are embedded if available.
++ Trailing plus signs in page numbers are removed.
++ Maintenance in Git makes it easy to stay updated.
+
+To use `yahapj.bst`:
+
+1. Use BibTeX for your bibliography. Help with this is beyond the scope of
+   this file.
+2. Copy the file `yahapj.bst` to the directory containing your LaTeX file, or
+   import this Git repository as a submodule in your paper's Git repository.
+
+3. Make sure your LaTeX file uses the `hyperref` package. For attractive
+   links, we suggest:
    ```
-   \usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+   \usepackage[breaklinks,colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
    ```
 4. Before your `\bibliography{}` command, put:
    ```
    \bibliographystyle{yahapj}
    ```
 5. That’s all there is to it!
-
-The features of `yahapj.bst` are:
-
-+ Your bibliography will look how it's supposed to for articles
-  submitted to the Astrophysical Journal.
-+ ArXiV identifiers and links are included for those entries
-  that don't contain any more formal reference information.
-+ DOI links are embedded if available.
-+ Trailing plus signs in page numbers are removed.
 
 Making & Sharing Improvements
 -----------------------------

@@ -10,7 +10,7 @@
 % Because this style file embeds links, your LaTeX file must use the
 % hyperref package. For non-butt-ugly links, try:
 %
-% \usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+% \usepackage[breaklinks,colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
 %
 % Copyright notice: This work is dedicated to the public domain. You
 % have unlimited permission to copy, distribute, and modify it.
