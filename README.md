@@ -46,10 +46,11 @@ entails, at https://github.com/pkgw/yahapj/.
 
 If you'd like to make changes to the style file, you may run into the minor
 problem that BibTeX style files are implemented in a bizarre nonce language.
-The best reference I've been able to find is “Tame the BeaST,” by Nicolas
-Markey (markey@lsv.ens-cachan.fr), currently available at:
+The best reference I've been able to find is “[Tame the BeaST][tame],” by
+[Nicolas Markey][markey].
 
-http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf
+[tame]: http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf
+[markey]: http://www.lsv.ens-cachan.fr/~markey/
 
 Provenance
 ----------
@@ -58,29 +59,28 @@ The history of recent changes to the style file should be discovered by
 consulting the Git history.
 
 The seed file for the Git repository is based upon revision 1.7 of `apj.bst`
-from the `astronat` package provided by the NASA Astrophysics Data System:
+from the [astronat] package provided by the NASA [Astrophysics Data
+System][ads]. That file was originally generated from `merlin.mbs`, which was
+written by Patrick W. Daly. Subsequent changes were contributed by Jonathan E.
+Baker, Tim Robishaw, Craig Wiegert, Andrew R. Marble, Stephan Fegan, and
+Alberto Accomazzi.
 
-http://ads.harvard.edu/pubs/bibtex/astronat/
-
-That file was originally generated from `merlin.mbs`, which was written by
-Patrick W. Daly. Subsequent changes were contributed by Jonathan E. Baker, Tim
-Robishaw, Craig Wiegert, Andrew R. Marble, Stephan Fegan, and Alberto
-Accomazzi.
-
-The seed file adds in the changes in `hapj.bst` provided by arxiv.org:
-
-http://arxiv.org/hypertex/bibstyles/
-
-which were added by Varendra (Alvin) Das. The version of the file provided by
-arxiv.org is based on what is effectively revision 1.5 of the ADS `apj.bst`.
+The seed file adds in the changes in [hapj.bst] provided by
+[arxiv.org][arxiv], which were added by Varendra (Alvin) Das. The version of
+the file provided by arxiv.org is based on what is effectively revision 1.5 of
+the ADS `apj.bst`.
 
 It also incorporates new-style arxiv identifiers from Jacques Distler's
-`utphys.bst`:
-
-http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
+[utphys.bst].
 
 These changes were collected and some further cleanups were made by Peter K.
 G. Williams.
+
+[ads]: http://adsabs.harvard.edu/
+[arxiv]: http://arxiv.org/
+[astronat]: http://ads.harvard.edu/pubs/bibtex/astronat/
+[hapj.bst]: http://arxiv.org/hypertex/bibstyles/
+[utphys.bst]: http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
 
 Copyright Status of `yahapj.bst`
 --------------------------------
