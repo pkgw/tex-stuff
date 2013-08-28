@@ -1,5 +1,5 @@
-yahapj.bst — yet another (h)ApJ bibtex style file
-=================================================
+yahapj.bst — yet another hacked ApJ bibtex style file
+=====================================================
 
 This Git repository contains `yahapj.bst`, a BibTeX style file for creating
 bibliographies in the format used by the Astrophysical Journal. It largely
@@ -34,10 +34,10 @@ To use `yahapj.bst`:
 Making & Sharing Improvements
 -----------------------------
 
-The style file is derived from the venerable `apj.bst` and adds some
-features which are mostly cribbed from other hacked versions of this
-file. We hope that by importing a version of this file into Git,
-improvements can be shared more easily.
+The style file is derived from the venerable `apj.bst` and adds some features
+which are mostly cribbed from other hacked versions of this file, especially
+the `hapj.bst` provided by ArXiv. We hope that by importing a version of this
+file into Git, improvements can be shared more easily.
 
 If you make changes to this file that you'd like to share, just clone
 the Git repository and commit away! At least one incarnation of the
