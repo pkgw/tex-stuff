@@ -1008,6 +1008,11 @@ FUNCTION {maybe.doi.link.end}
  if$
 }
 
+FUNCTION {format.journal}
+{
+  "{\JournalTitle{" journal * "}}" *
+}
+
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
@@ -1015,9 +1020,8 @@ FUNCTION {article}
   name.or.dash
   format.date "year" output.check
   crossref missing$
-    { journal
+    { format.journal "journal" output.check
       maybe.doi.link.prepend
-      "journal" output.check
       format.vol.num.pages output
     }
     { format.article.crossref
