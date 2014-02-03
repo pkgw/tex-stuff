@@ -11,7 +11,10 @@ nice new features:
   that don't contain any more formal reference information.
 + DOI links are embedded if available.
 + Trailing plus signs in page numbers are removed.
++ Automatic compatibility with the [jabbrv] journal name abbreviation package.
 + Maintenance in Git makes it easy to stay updated.
+
+[jabbrv]: http://www.compholio.com/latex/jabbrv/
 
 To use `yahapj.bst`:
 
@@ -19,7 +22,6 @@ To use `yahapj.bst`:
    this file.
 2. Copy the file `yahapj.bst` to the directory containing your LaTeX file, or
    import this Git repository as a submodule in your paper's Git repository.
-
 3. Make sure your LaTeX file uses the `hyperref` package. For attractive
    links, we suggest:
    ```
@@ -30,6 +32,7 @@ To use `yahapj.bst`:
    \bibliographystyle{yahapj}
    ```
 5. That’s all there is to it!
+
 
 Making & Sharing Improvements
 -----------------------------
@@ -51,6 +54,7 @@ The best reference I've been able to find is “[Tame the BeaST][tame],” by
 
 [tame]: http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf
 [markey]: http://www.lsv.ens-cachan.fr/~markey/
+
 
 Provenance
 ----------
@@ -82,6 +86,7 @@ G. Williams.
 [hapj.bst]: http://arxiv.org/hypertex/bibstyles/
 [utphys.bst]: http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
 
+
 Copyright Status of `yahapj.bst`
 --------------------------------
 
@@ -103,11 +108,13 @@ not apply to `yahapj.bst`, or `yahapj.bst` is treated as being in the public
 domain, the “non-profit” clause is inoperative, and you may attempt to
 distribute it in exchange for money. Have fun with that.
 
+
 Copyright Status of This File
 -----------------------------
 
 This README file is also dedicated to the public domain. You have unlimited
 permission to copy, distribute, and modify it.
+
 
 Contributors
 ------------
@@ -120,5 +127,6 @@ Contributors
 + Stephen Fegan (sfegan@llr.in2p3.fr)
 + Andrew R. Marble (amarble@as.arizona.edu)
 + Tim Robishaw (robishaw@astro.berkeley.edu)
++ Tim van Werkhoven (werkhoven@strw.leidenuniv.nl)
 + Craig Wiegert (cwiegert@alumni.uchicago.edu)
 + Peter K. G. Williams (peter@newton.cx)
