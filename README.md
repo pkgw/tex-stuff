@@ -1,5 +1,5 @@
-yahapj.bst — yet another hacked ApJ bibtex style file
-=====================================================
+yahapj.bst: yet another hacked ApJ bibtex style
+===============================================
 
 This Git repository contains `yahapj.bst`, a BibTeX style file for creating
 bibliographies in the format used by the Astrophysical Journal. It largely
@@ -31,7 +31,9 @@ To use `yahapj.bst`:
    ```
    \bibliographystyle{yahapj}
    ```
-5. That’s all there is to it!
+5. (If you're really adventurous, [see below](#year-only-links) about
+   optionally tweaking link formatting with deep LaTeX magic.)
+6. That’s all there is to it!
 
 
 Making & Sharing Improvements
@@ -85,6 +87,61 @@ G. Williams.
 [astronat]: http://ads.harvard.edu/pubs/bibtex/astronat/
 [hapj.bst]: http://arxiv.org/hypertex/bibstyles/
 [utphys.bst]: http://golem.ph.utexas.edu/~distler/TeXstuff/utphys.bst
+
+
+Year-Only Links
+---------------
+
+Because this style requires `hyperref`, your manuscript will be filled with
+active links from your `\cite` command to the references. If you compare with
+the actual published ApJ, however, you'll note that in your PDF the entire
+reference (e.g., “Jones et al. 2013”) is a link, whereas in ApJ only the year
+is.
+
+If you want to get really hard-core — or if the full-reference links give too
+much blue text on each page for your tastes — here is some magic LaTeX code to
+hack the `\cite` commands to look like ApJ. This is blindly copied off of
+[this StackExchange answer] by ["Audrey"], and I have no freaking idea how it
+works. But it works for me.
+
+    % In preamble:
+    \usepackage{etoolbox}
+    
+    \makeatletter
+    
+    % Patch case where name and year are separated by aysep
+    \patchcmd{\NAT@citex}
+      {\@citea\NAT@hyper@{%
+         \NAT@nmfmt{\NAT@nm}%
+         \hyper@natlinkbreak{\NAT@aysep\NAT@spacechar}{\@citeb\@extra@b@citeb}%
+         \NAT@date}}
+      {\@citea\NAT@nmfmt{\NAT@nm}%
+       \NAT@aysep\NAT@spacechar\NAT@hyper@{\NAT@date}}{}{}
+    
+    % Patch case where name and year are separated by opening bracket
+    \patchcmd{\NAT@citex}
+      {\@citea\NAT@hyper@{%
+         \NAT@nmfmt{\NAT@nm}%
+         \hyper@natlinkbreak{\NAT@spacechar\NAT@@open\if*#1*\else#1\NAT@spacechar\fi}%
+           {\@citeb\@extra@b@citeb}%
+         \NAT@date}}
+      {\@citea\NAT@nmfmt{\NAT@nm}%
+       \NAT@spacechar\NAT@@open\if*#1*\else#1\NAT@spacechar\fi\NAT@hyper@{\NAT@date}}
+      {}{}
+    
+    \makeatother
+
+I presume that if you include this kind of code in the LaTeX files you
+actually send to the journal, they'll freak out at you. But you can put it in
+your Arxiv submissions to make them look classy.
+
+[this StackExchange answer]: http://tex.stackexchange.com/a/27311
+["Audrey"]: http://tex.stackexchange.com/users/4483/audrey
+
+Alternatively, it appears that [biblatex] has built-in support for this, but
+then you wouldn't be using this package!
+
+[biblatex]: http://www.ctan.org/pkg/biblatex
 
 
 Copyright Status of `yahapj.bst`
