@@ -1010,7 +1010,10 @@ FUNCTION {maybe.doi.link.end}
 
 FUNCTION {format.journal}
 {
-  "\JournalTitle{" journal * "}" *
+  journal empty$
+    { "" } % warning will be issued by output.check
+    { "\JournalTitle{" journal * "}" * }
+  if$
 }
 
 FUNCTION {article}
