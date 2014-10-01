@@ -1,77 +1,27 @@
-%%
-%% nsf.bst: UNOFFICIAL bib style file, (hopefully!) approximating the
-%%          NSF Astronomy & Astrophysics proposal requirements as
-%%          detailed in the GPG, document NSF 1-11.
-%%
-%% DEPENDENCIES:
-%% * URLs are formatted using \url{}, so needs
-%%   \usepackage{url} or \usepackage{hyperref}
-%% * The URL and arXiv features assume you get your .bib from ADS.
-%%
-%% Based on `jponew.bst', from
-%%   http://www-pord.ucsd.edu/~sgille/how_to/proposal_prep.html
-%%
-%% Hacked by Jonathan Irwin (jirwin -at- cfa -dot- harvard -dot- edu)
-%% Please do not report problems to any of the previous authors!
-%%
-%% Known issues:
-%%
-%% * arXiv postings are not dealt with very well.  It would be nice if
-%%   the "submitted to ..." from the comments was available in the ADS
-%%   bibtex entries to help with formatting these, but it's not.
-%% 
-%% Original preamble and copyright notices follow.
-%%
-%% This is file `jponew.bst',
-%% generated with the docstrip utility.
-%% 
-%% The original source files were:
-%% 
-%% stefan.mbs  (with options: `,ay,nat,nm-rev1,ed-rev,nmdash,dt-beg,yr-com,yrp-col,note-yr,vol-2bf,volp-com,pp-last,pre-pub,isbn,blk-tit,pp,ed,abr,ednx,ord')
-%% ---------------------------------------- 
-%% *** JPO revised version *** 
-%%   developed by Stefan Llewellyn Smith, Sarah Gille based on Patrick
-%%   Daly's AGU bibliography stylefile.
- %-------------------------------------------------------------------
- % The original source file contains the following version information:
- % \ProvidesFile{merlin.mbs}[1997/06/09 3.83 (PWD)]
- %
- % NOTICE:
- % This file may be used for non-profit purposes.
- % It may not be distributed in exchange for money,
- %   other than distribution costs.
- %
- % The author provides it `as is' and does not guarantee it in any way.
- %
- % Copyright (C) 1994-97 Patrick W. Daly
- %-------------------------------------------------------------------
- %   For use with BibTeX version 0.99a or later
- %-------------------------------------------------------------------
- % This bibliography style file is intended for texts in ENGLISH
- % This is an author-year citation style bibliography. As such, it is
- % non-standard LaTeX, and requires a special package file to function properly.
- % Such a package is    natbib.sty   by Patrick W. Daly
- % The form of the \bibitem entries is
- %   \bibitem[Jones et al.(1990)]{key}...
- %   \bibitem[Jones et al.(1990)Jones, Baker, and Smith]{key}...
- % The essential feature is that the label (the part in brackets) consists
- % of the author names, as they should appear in the citation, with the year
- % in parentheses following. There must be no space before the opening
- % parenthesis!
- % With natbib v5.3, a full list of authors may also follow the year.
- % In natbib.sty, it is possible to define the type of enclosures that is
- % really wanted (brackets or parentheses), but in either case, there must
- % be parentheses in the label.
- % The \cite command functions as follows:
- %   \cite{key} ==>>                Jones et al. (1990)
- %   \cite[]{key} ==>>              (Jones et al., 1990)
- %   \cite[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
- %   \cite[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
- %   \cite[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
- %   \citeauthor{key}               Jones et al.
- %   \citefullauthor{key}           Jones, Baker, and Smith
- %   \citeyear{key}                 1990
- %---------------------------------------------------------------------
+% yansf.bst -- yet another NSF bibtex style file
+% Git SHA1 hash: $Id$
+% Reference repository: https://github.com/pkgw/yahapj/
+%
+% Based on the 2012/10/29 version Jonathan Irwin's nsf.bst [1], which in turn
+% came from jponew.bst [2] (Stefn LLewellyn Smith, Sarah Gille), which came
+% from Patrick Daly's AGU bibliography style, which was derived from
+% merlin.mbs.
+%
+% [1] https://www.cfa.harvard.edu/~jirwin/tex/nsf.bst
+% [2] http://www-pord.ucsd.edu/~sgille/how_to/proposal_prep.html
+%
+% Because this style file embeds links, your LaTeX file must use the
+% hyperref package. For non-butt-ugly links, try:
+%
+% \usepackage[breaklinks,colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+%
+% Copyright notice: This work is dedicated to the public domain. You
+% have unlimited permission to copy, distribute, and modify it.
+%
+% For more information about this file and its provenance, consult
+% README.md in the Git repository from which it was obtained. You can
+% track these down using the SHA1 hash listed at the top of this file.
+% (Googling for the hash value should hopefully be sufficient.)
 
 ENTRY
   { address
@@ -80,6 +30,7 @@ ENTRY
     archiveprefix
     booktitle
     chapter
+    doi
     edition
     editor
     eprint
@@ -93,6 +44,7 @@ ENTRY
     number
     organization
     pages
+    primaryClass
     publisher
     school
     series
@@ -118,7 +70,7 @@ STRINGS { s t }
 FUNCTION {output.nonnull}
 { 's :=
   output.state mid.sentence =
-    {  duplicate$ #-1 #2 substring$ "''" = 
+    {  duplicate$ #-1 #2 substring$ "''" =
          {  #-3 global.max$ substring$
             ",'' " * write$
          }
@@ -243,9 +195,8 @@ FUNCTION {capitalize}
 FUNCTION {space.word}
 { " " swap$ * " " * }
 
- % Here are the language-specific definitions for explicit words.
- % Each function has a name bbl.xxx where xxx is the English word.
- % The language selected here is ENGLISH
+% Here's how BibTeX does internationalization:
+
 FUNCTION {bbl.and}
 { "and"}
 
@@ -366,47 +317,6 @@ FUNCTION {eng.ord}
    if$
 }
 
-MACRO {acmcs} {"ACM Computing Surveys"}
-
-MACRO {acta} {"Acta Informatica"}
-
-MACRO {cacm} {"Communications of the ACM"}
-
-MACRO {ibmjrd} {"IBM Journal of Research and Development"}
-
-MACRO {ibmsj} {"IBM Systems Journal"}
-
-MACRO {ieeese} {"IEEE Transactions on Software Engineering"}
-
-MACRO {ieeetc} {"IEEE Transactions on Computers"}
-
-MACRO {ieeetcad}
- {"IEEE Transactions on Computer-Aided Design of Integrated Circuits"}
-
-MACRO {ipl} {"Information Processing Letters"}
-
-MACRO {jacm} {"Journal of the ACM"}
-
-MACRO {jcss} {"Journal of Computer and System Sciences"}
-
-MACRO {scp} {"Science of Computer Programming"}
-
-MACRO {sicomp} {"SIAM Journal on Computing"}
-
-MACRO {tocs} {"ACM Transactions on Computer Systems"}
-
-MACRO {tods} {"ACM Transactions on Database Systems"}
-
-MACRO {tog} {"ACM Transactions on Graphics"}
-
-MACRO {toms} {"ACM Transactions on Mathematical Software"}
-
-MACRO {toois} {"ACM Transactions on Office Information Systems"}
-
-MACRO {toplas} {"ACM Transactions on Programming Languages and Systems"}
-
-MACRO {tcs} {"Theoretical Computer Science"}
-
 INTEGERS { nameptr namesleft numnames }
 
 FUNCTION {format.names}
@@ -415,7 +325,7 @@ FUNCTION {format.names}
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr "{vv~}{ll}{, f{}}{, jj}" format.name$ 't := 
+    { s nameptr "{vv~}{ll}{, f{}}{, jj}" format.name$ 't :=
       nameptr #1 >
         {
           namesleft #1 >
@@ -1574,7 +1484,9 @@ FUNCTION {begin.bib}
   if$
   "\begin{thebibliography}{" number.label int.to.str$ * "}" *
   write$ newline$
-  "\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi"
+  "\providecommand\natexlab[1]{#1}"
+  write$ newline$
+  "\providecommand\JournalTitle[1]{#1}"
   write$ newline$
 }
 
@@ -1590,6 +1502,3 @@ FUNCTION {end.bib}
 }
 
 EXECUTE {end.bib}
-%% End of customized bst file 
-%% 
-%% End of file `jponew.bst'.
