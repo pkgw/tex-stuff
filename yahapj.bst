@@ -33,6 +33,7 @@ ENTRY
     eprint
     howpublished
     institution
+    isbn
     journal
     key
     month
