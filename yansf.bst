@@ -25,7 +25,6 @@
 
 ENTRY
   { address
-    adsurl
     author
     archiveprefix
     booktitle
@@ -50,6 +49,7 @@ ENTRY
     series
     title
     type
+    url
     volume
     year
   }
@@ -134,11 +134,6 @@ FUNCTION {new.sentence}
 
 FUNCTION {add.blank}
 {  " " * before.all 'output.state :=
-}
-
-FUNCTION {postauthor.block}
-{
-  new.sentence
 }
 
 FUNCTION {not}
@@ -458,23 +453,9 @@ FUNCTION {format.full.names}
 }
 
 FUNCTION {format.url}
-{ adsurl empty$
-    { "" }
-    { adsurl 't :=
-      "\url{"
-      { t empty$ not }
-        { t #1 #1 substring$ "%" =
-            { "\%" *
-              t #2 global.max$ substring$ 't :=
-            }
-            { t #1 #1 substring$ *
-              t #2 global.max$ substring$ 't :=
-            }
-          if$
-        }
-      while$
-      "}" *
-    }
+{ url empty$
+  { "" }
+  { "\url{" url * "}" * }
   if$
 }
 
@@ -877,44 +858,13 @@ FUNCTION {article}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title "title" output.check
   crossref missing$
-    {
-%% Modified by JMI - ADS outputs a journal of "ArXiv
-%% e-prints" (or "ArXiv Astrophysics e-prints") for
-%% preprints, which produces "year, ArXiv e-prints" with
-%% no paper number.  This is unacceptable to ApJ as-is
-%% according to the instructions to authors (and is also
-%% not very helpful, anyway!).
-%%
-%% Changed to intercept this and write the eprint number
-%% instead, which is at least something ApJ allows.  It
-%% would be more ideal to print the journal to which it
-%% was submitted and the status, but this information is
-%% not available to the code.
-%%
-      journal #1 #6 substring$ "ArXiv " =
-        {
-%% This deals with adding the prefix.  Otherwise assumes
-%% it has already been done (this was indeed true for
-%% the old papers I checked).
-          archivePrefix missing$
-            { eprint }
-            { archivePrefix ":" * eprint * }
-          if$
-%% Note what it is
-          "preprint ({\tt " swap$ * "})" *
-%% Write out what's in the stack...
-          output.nonnull
-        }
-        {
-          journal
-          emphasize
-          "journal" output.check
-          format.vol.num.pages output
-        }
-      if$
+    { journal
+      emphasize
+      "journal" output.check
+      format.vol.num.pages output
       format.date "year" output.check
     }
     { format.article.crossref output.nonnull
@@ -944,7 +894,7 @@ FUNCTION {book}
       if$
     }
   if$
-  postauthor.block
+  new.sentence
   format.btitle "title" output.check
   crossref missing$
     { format.bvolume output
@@ -969,7 +919,7 @@ FUNCTION {booklet}
   format.authors output
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title "title" output.check
   howpublished output
   address output
@@ -995,7 +945,7 @@ FUNCTION {inbook}
       if$
     }
   if$
-  postauthor.block
+  new.sentence
   format.btitle "title" output.check
   crossref missing$
     {
@@ -1024,7 +974,7 @@ FUNCTION {incollection}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title "title" output.check
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
@@ -1052,7 +1002,7 @@ FUNCTION {inproceedings}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title "title" output.check
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
@@ -1086,7 +1036,7 @@ FUNCTION {manual}
   format.authors output
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.btitle "title" output.check
   organization output
   address output
@@ -1103,7 +1053,7 @@ FUNCTION {mastersthesis}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.btitle "title" output.check
   bbl.mthesis format.thesis.type output.nonnull
   school "school" output.check
@@ -1120,7 +1070,7 @@ FUNCTION {misc}
   format.authors output
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title output
   howpublished output
   format.date "year" output.check
@@ -1135,7 +1085,7 @@ FUNCTION {phdthesis}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.btitle "title" output.check
   bbl.phdthesis format.thesis.type output.nonnull
   school "school" output.check
@@ -1152,7 +1102,7 @@ FUNCTION {proceedings}
   format.editors output
   editor format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.btitle "title" output.check
   format.bvolume output
   format.number.series output
@@ -1172,7 +1122,7 @@ FUNCTION {techreport}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title "title" output.check
   format.tr.number output.nonnull
   institution "institution" output.check
@@ -1189,7 +1139,7 @@ FUNCTION {unpublished}
   format.authors "author" output.check
   author format.key output
   name.or.dash
-  postauthor.block
+  new.sentence
   format.title "title" output.check
   format.date "year" output.check
   format.note "note" output.check
