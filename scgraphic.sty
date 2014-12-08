@@ -1,0 +1,148 @@
+% Copyright 2014 Peter Williams
+%
+% This work may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, either version 1.3 of this license or (at your
+% option) any later version. The latest version of this license is in
+% http://www.latex-project.org/lppl.txt and version 1.3 or later is part of
+% all distributions of LaTeX version 2005/12/01 or later. This work has the
+% LPPL maintenance status "maintained". The Current Maintainer of this work is
+% Peter Williams. This work consists of the file scgraphic.sty.
+
+
+% scgraphic.sty, inspired by sidecap.sty. Quick way to create a figure float
+% containing an image and a caption placed to its right side.
+%
+%   \scgraphic[frac=0.7,label=f.foo]{image-path}{Caption text.}
+%
+% is approximately equivalent to:
+%
+%   \begin{figure*}
+%     \includegraphics{image-path}
+%     \caption{Caption text.}
+%     \label{f.foo}
+%   \end{figure*}
+%
+% except that special things are done to place the image and caption
+% side-by-side, in this case giving the image 0.7 of the available width.
+%
+% The key parameter is 'frac', which determines how much of the horizontal
+% space is allocated to the image. Usually you want to adjust it until the
+% image and caption are about the same height.
+%
+% Keywords to \scgraphic are:
+%
+%   altcap - Passed as the optional arg to \caption: \caption[altcap]{main cap...}
+%   frac   - Fraction of the available width to be allocated to the image
+%   gutter - Size of the gutter between image and caption. Defaults to \marginparsep
+%   label  - \label{} of the figure.
+%   pos    - Postioning of the resulting float. Defaults to "tb".
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{scgraphic}[2014/11/03 v0.1 scgraphic (PKGW)]
+
+\RequirePackage{keyval}[1997/11/10]
+\RequirePackage{graphicx}[1999/02/16]
+\RequirePackage[NewParameters]{ragged2e}
+
+\newdimen\scg@gutter
+\newdimen\scg@figwidth
+\newdimen\scg@capwidth
+\newdimen\scg@figheight
+
+\def\scgDefaultAltCap{}
+\def\scgDefaultPos{tb}
+\def\scgDefaultFrac{0.5}
+\def\scgDefaultGutter{\marginparsep}
+
+\newcommand*{\scg@debuglen}[1]{} % noop; activated by 'debug' option
+\newcommand{\scg@debugbox}[1]{#1} % passthrough; activated by 'debug' option
+
+
+% Option processing
+
+\DeclareOption{debug}{%
+  \renewcommand*{\scg@debuglen}[1]{%
+    \PackageInfo{scgraphic}{\string#1 \the#1}%
+  }%
+  \renewcommand{\scg@debugbox}[1]{%
+    {\setlength{\fboxsep}{0pt}%
+     \setlength{\fboxrule}{1pt}%
+     \fbox{#1}%
+    }%
+  }%
+}%
+
+\ExecuteOptions{}
+\ProcessOptions\relax
+
+
+% The rest
+
+\def\scgraphic{\@ifnextchar[\scgraphic@@a{\scgraphic@@a[]}}
+\def\scgraphic@@a[#1]#2#3{%
+  % #1 - keyword args
+  % #2 - image path
+  % #3 - caption text
+  %
+  % Default the keywords
+  \edef\scg@kw@altcap{\scgDefaultAltCap}%
+  \edef\scg@kw@frac{\scgDefaultFrac}%
+  \setlength{\scg@gutter}{\scgDefaultGutter}%
+  \let\scg@kw@label=\@undefined%
+  \edef\scg@kw@pos{\scgDefaultPos}%
+  %
+  % Process keywords
+  \setkeys{scg}{#1}%
+  \scg@debuglen{\scg@gutter}%
+  %
+  % Go. \@xdblfloat needs to see the value of \scg@kw@pos after expansion; I'm
+  % sure there's a non-ridiculous way to do this, but this is all I can manage
+  % right now.
+  \def\@tempa{{figure}[}
+  \def\@tempb{]}
+  \edef\@tempc{\noexpand\@xdblfloat\@tempa\scg@kw@pos\@tempb}
+  \@tempc%
+    % Calculate the widths of the image and the caption
+    \setlength{\scg@capwidth}{\textwidth}% temporarily: full item width
+    \advance\scg@capwidth -\scg@gutter \relax% temporarily: full width minus gutter
+    \edef\@tempa{\scg@kw@frac\noexpand\scg@capwidth}%
+    \setlength{\scg@figwidth}\@tempa\relax%
+    \advance\scg@capwidth -\scg@figwidth% final value
+    \scg@debuglen{\textwidth}%
+    \scg@debuglen{\scg@figwidth}%
+    \scg@debuglen{\scg@capwidth}%
+    %
+    \makebox[\textwidth][c]{%
+      \settoheight{\scg@figheight}{%
+         \includegraphics[width=\scg@figwidth]{#2}%
+      }%
+      \scg@debuglen{\scg@figheight}%
+      \scg@debugbox{\includegraphics[width=\scg@figwidth]{#2}}%
+      \hspace{\scg@gutter}%
+      \scg@debugbox{\minipage[b][\scg@figheight][c]{\scg@capwidth}%
+        \hrule \@height\z@ \@depth\z@%
+        \let\@arrayparboxrestore\relax%
+        \let\usecaptionmargin\relax%
+        \abovecaptionskip\z@skip%
+        \belowcaptionskip\z@skip%
+        \caption[\scg@kw@altcap]{%
+          \RaggedRight%
+          \strut\ignorespaces#3\unskip\strut%
+        }%
+        \unskip%
+        \ifx\scg@kw@label\@undefined\else%
+          \label{\scg@kw@label}%
+        \fi%
+        \hrule \@height\z@ \@depth\z@%
+      \endminipage}%
+    }%
+  \end@dblfloat
+}
+
+\define@key{scg}{altcap}{\def\scg@kw@altcap{#1}}
+\define@key{scg}{frac}{\def\scg@kw@frac{#1}}
+\define@key{scg}{gutter}{\setlength{\scg@gutter}{#1}}
+\define@key{scg}{label}{\def\scg@kw@label{#1}}
+\define@key{scg}{pos}{\def\scg@kw@pos{#1}}
+
+\endinput
