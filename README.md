@@ -25,10 +25,13 @@ How to Use It
    file.
 3. Make sure your LaTeX file uses the `hyperref` package. For attractive
    links, we suggest:
+
    ```
-   \usepackage[breaklinks,colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+   \usepackage[breaklinks,colorlinks,
+      urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
    ```
 4. For your `\bibliographystyle{}` command, put:
+
    ```
    \bibliographystyle{yahapj}
    ```
