@@ -16,24 +16,28 @@ nice new features:
 
 [jabbrv]: http://www.compholio.com/latex/jabbrv/
 
-To use `yahapj.bst`:
+How to Use It
+-------------
 
 1. Use BibTeX for your bibliography. Help with this is beyond the scope of
    this file.
-2. Copy the file `yahapj.bst` to the directory containing your LaTeX file, or
-   import this Git repository as a submodule in your paper's Git repository.
+2. Download [yahapj.bst] and save it in the directory containing your LaTeX
+   file.
 3. Make sure your LaTeX file uses the `hyperref` package. For attractive
    links, we suggest:
    ```
    \usepackage[breaklinks,colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
    ```
-4. Before your `\bibliography{}` command, put:
+4. For your `\bibliographystyle{}` command, put:
    ```
    \bibliographystyle{yahapj}
    ```
-5. (If you're really adventurous, [see below](#year-only-links) about
-   optionally tweaking link formatting with deep LaTeX magic.)
-6. That’s all there is to it!
+
+That’s all there is to it! If you're really adventurous, [see
+below](#year-only-links) about optionally tweaking link formatting with deep
+LaTeX magic.
+
+[yahapj.bst]: https://raw.githubusercontent.com/pkgw/yahapj/master/yahapj.bst
 
 
 Making & Sharing Improvements
