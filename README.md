@@ -16,6 +16,7 @@ nice new features:
 
 [jabbrv]: http://www.compholio.com/latex/jabbrv/
 
+
 How to Use It
 -------------
 
@@ -23,7 +24,7 @@ How to Use It
    this file.
 2. Download [yahapj.bst] and save it in the directory containing your LaTeX
    file.
-3. Make sure your LaTeX file uses the `hyperref` package. For attractive
+3. Make sure your LaTeX file uses the [hyperref] package. For attractive
    links, we suggest:
 
    ```
@@ -41,6 +42,7 @@ below](#year-only-links) about optionally tweaking link formatting with deep
 LaTeX magic.
 
 [yahapj.bst]: https://raw.githubusercontent.com/pkgw/yahapj/master/yahapj.bst
+[hyperref]: http://www.ctan.org/pkg/hyperref
 
 
 Making & Sharing Improvements
@@ -99,7 +101,7 @@ G. Williams.
 Year-Only Links
 ---------------
 
-Because this style requires `hyperref`, your manuscript will be filled with
+Because this style requires [hyperref], your manuscript will be filled with
 active links from your `\cite` command to the references. If you compare with
 the actual published ApJ, however, you'll note that in your PDF the entire
 reference (e.g., “Jones et al. 2013”) is a link, whereas in ApJ only the year
