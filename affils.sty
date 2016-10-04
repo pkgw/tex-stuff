@@ -1,0 +1,81 @@
+% affils.sty -- automatically number affiliations
+% Copyright 2016 Peter Williams <peter@newton.cx>
+% Licensed under the MIT License.
+%
+% To use:
+%
+% 1. Save this file next to your .tex file and add \usepackage{affils} at its top.
+%
+% 2. Before your author list, write:
+%
+%       \DeclareAffil{nickname}{Full text to appear.}
+%
+%    for each affiliation that might be used. Order doesn't matter. For example,
+%
+%       \DeclareAffil{cfa}{Harvard-Smithsonian Center for Astrophysics,
+%          60 Garden Street, Cambridge, Massachusetts 02138, USA}
+%       \DeclareAffil{nice}{All-Around Nice Fellow}
+%
+% 3. Instead of the \author command, use a new modified version like so:
+%
+%     \affilauthorlist{
+%        P.~K.~G. Williams\affils{cfa,nice},
+%        Your Name Here\affils{nice},
+%     }
+%
+% 4. Enjoy! Affiliations will automatically be numbered and be listed in the order
+%    used in the author list.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{affils}[2016/03/11 v0.1 affils (PKGW)]
+\RequirePackage{kvsetkeys}
+
+\newcounter{pkgwaffil@nextnum}
+\setcounter{pkgwaffil@nextnum}{1}
+
+\newtoks\pkgwaffil@texts
+\pkgwaffil@texts={}
+
+\newcommand\DeclareAffil[2]{\expandafter\newcommand\csname pkgwaffil@#1@text\endcsname{#2}}
+
+\newcommand\affils@process@one[1]{%
+  \expandafter\ifx\csname pkgwaffil@#1@text\endcsname\relax%
+    \textbf{[unknown affiliation code #1!]}%
+  \else%
+    \expandafter\ifx\csname pkgwaffil@#1@num\endcsname\relax%
+      % No number assigned -- do so and add to the list to emit
+      \expandafter\xdef\csname pkgwaffil@#1@num\endcsname{\arabic{pkgwaffil@nextnum}}%
+      \global\pkgwaffil@texts=\expandafter{\the\pkgwaffil@texts
+        \altaffiltext{\csname pkgwaffil@#1@num\endcsname}{\csname pkgwaffil@#1@text\endcsname}}%
+      \stepcounter{pkgwaffil@nextnum}%
+    \fi
+    % Add affil's number to the current list.
+    \ifx\pkgwaffil@cur@numbers\relax
+      \edef\pkgwaffil@cur@numbers{\csname pkgwaffil@#1@num\endcsname}%
+    \else
+      \edef\pkgwaffil@cur@numbers{\pkgwaffil@cur@numbers,\csname pkgwaffil@#1@num\endcsname}%
+    \fi
+  \fi%
+}
+
+\newcommand\affils[1]{%
+  \let\pkgwaffil@cur@numbers\relax
+  \comma@parse{#1}\affils@process@one
+  \expandafter\altaffilmark\expandafter{\pkgwaffil@cur@numbers}%
+}
+
+% The trickiest part is that \author{} is not evaluated right off the bat, so
+% \affils@process@one isn't actually called until the first piece of body text
+% is encountered, which is too late for us to run the \altaffiltext commands.
+% Therefore, we're gross and expand the author text into \@tempboxa, where we
+% can evaluate the macros but not actually generate any text.
+%
+% We could just overwrite the \author command here, but I'm more comfortable
+% explicitly giving it a new name.
+
+\newcommand\affilauthorlist[1]{%
+  \setbox\@tempboxa\vbox{#1}%
+  \author{#1}%
+  \edef\pkgwaffil@temp{\the\pkgwaffil@texts}%
+  \pkgwaffil@temp
+}
