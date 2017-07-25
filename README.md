@@ -17,3 +17,6 @@ Less fascinatingly cool files include:
   really trying to save as much space as you possibly can).
 - *yansf.bst*, a NSF-compatible BibTeX style that inserts hyperlinks and Arxiv
   information like [yahapj.bst](docs/yahapj.md).
+
+If you’re interested in a standalone `deluxetable` style file, use
+[the one maintained by the AAS Journals folks](https://github.com/AASJournals/deluxetable.sty).
