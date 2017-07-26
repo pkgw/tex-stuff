@@ -1030,9 +1030,26 @@ FUNCTION {book}
     }
   if$
   format.date "year" output.check.nocomma
-  title format.full.book.spec output.skipempty.nocomma
+  maybe.doi.link.prepend
+  title format.full.book.spec
+  maybe.doi.link.end output.skipempty.nocomma
   format.publisher
   format.pages output.skipempty.nocomma
+  format.eprint output.skipempty.comma
+  format.note output.skipempty.nocomma
+  finish.entry
+}
+
+FUNCTION {incollection}
+{ output.bibitem
+  format.authors "author" output.check.nocomma
+  author format.key output.skipempty.nocomma
+  format.date "year" output.check.nocomma
+  maybe.doi.link.prepend
+  bbl.in " " * booktitle format.full.book.spec *
+  maybe.doi.link.end output.skipempty.nocomma
+  format.publisher
+  format.pages "pages" output.skipempty.nocomma
   format.eprint output.skipempty.comma
   format.note output.skipempty.nocomma
   finish.entry
