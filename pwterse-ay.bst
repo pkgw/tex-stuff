@@ -357,7 +357,7 @@ FUNCTION {format.names}
             if$
             t "others" =
               {
-                " \textit{et~al.}" *
+                " et~al." *
               }
               { " \& " * t * }
             if$
@@ -460,7 +460,7 @@ FUNCTION {format.full.names}
               if$
               t "others" =
                 {
-                  " \textit{et~al.}" *
+                  " et~al." *
                 }
                 { " \& " * t * }
               if$
@@ -1098,13 +1098,13 @@ FUNCTION {format.lab.names}
   s num.names$ duplicate$
   #2 >
     { pop$
-      " \textit{et~al.}" *
+      " et~al." *
     }
     { #2 <
         'skip$
         { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
             {
-              " \textit{et~al.}" *
+              " et~al." *
             }
             { " \& " * s #2 "{vv~}{ll}" format.name$
               * }
