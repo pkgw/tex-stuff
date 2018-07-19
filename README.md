@@ -6,7 +6,10 @@ Peter Williams' helpful LaTeX files. These include:
 - [yahapj.bst](docs/yahapj.md), an ApJ-like BibTeX style that properly shows
   Arxiv identifiers and hyperlinks to DOI or ADS pages.
 - *affils.sty*, a package for auto-numbering affiliations in long author
-  lists.
+  lists. Note that AASTeX versions 6.2 and later have comparable
+  functionality; see
+  [its documentation](https://journals.aas.org/authors/aastex/aasguide.html)
+  for information on the new `\affiliation` command.
 - *scgraphic.sty*, a package for quickly and configurably making a figure with
   a caption to its side.
 
