@@ -322,7 +322,7 @@ FUNCTION {format.names}
         namesleft #1 >
           { ", " * t * }
           {
-            numnames #1 >
+            numnames #2 >
               { "," * }
               'skip$
             if$
