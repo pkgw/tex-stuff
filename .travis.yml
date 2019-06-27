@@ -21,5 +21,13 @@ addons:
     packages:
     - tectonic
 
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
+    - $HOME/Library/Caches/Tectonic
+
+before_cache:
+  - brew cleanup
+
 script:
   - ./tests/run-all.sh
