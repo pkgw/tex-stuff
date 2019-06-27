@@ -1,6 +1,6 @@
 % yahapj.bst -- yet another ApJ bibtex style file
 % Git SHA1 hash: $Id$
-% Reference repository: https://github.com/pkgw/yahapj/
+% Reference repository: https://github.com/pkgw/tex-stuff/
 %
 % The main features compared to other ApJ style files is that ArXiV
 % and DOI links are added. ArXiV information is only shown for those
@@ -19,6 +19,11 @@
 % README.md in the Git repository from which it was obtained. You can
 % track these down using the SHA1 hash listed at the top of this file.
 % (Googling for the hash value should hopefully be sufficient.)
+%
+% This file is in the "BST" language, a unique reverse-polish-notation
+% language. The best and only reference of which I am aware is Part 4 of the
+% document "Tame the BeaST", by Nicolas Markey:
+% https://ctan.org/pkg/tamethebeast/
 
 ENTRY
   { address
