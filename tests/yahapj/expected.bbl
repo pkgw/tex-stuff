@@ -1,0 +1,15 @@
+\begin{thebibliography}{}
+\providecommand\natexlab[1]{#1}
+\providecommand\JournalTitle[1]{#1}
+
+\bibitem[{{Noordam}(2004{\natexlab{a}})}]{issue11a}
+{Noordam}, J.~E. 2004{\natexlab{a}},
+  \href{http://dx.doi.org/10.1117/12.544262}{\JournalTitle{Proc. SPIE}, 5489,
+  817}
+
+\bibitem[{{Noordam}(2004{\natexlab{b}})}]{issue11b}
+{Noordam}, J.~E. 2004{\natexlab{b}},
+  \href{http://dx.doi.org/10.1117/12.544262}{\JournalTitle{Duplicated Proc.
+  SPIE}, 5489, 817}
+
+\end{thebibliography}

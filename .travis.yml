@@ -1,0 +1,33 @@
+# Copyright 2019 Peter Williams
+# Licensed under the MIT License
+
+# We test on macOS since it's the easiest way to install the Tectonic binary
+# that we need! Hmmm ...
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode10.2
+
+# Don't build branches besides master -- note that PR's still get built! This
+# prevents PRs being built twice in the standard workflow.
+
+branches:
+  only:
+    - master
+
+addons:
+  homebrew:
+    packages:
+    - tectonic
+
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
+    - $HOME/Library/Caches/Tectonic
+
+before_cache:
+  - brew cleanup
+
+script:
+  - ./tests/run-all.sh

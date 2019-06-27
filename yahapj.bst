@@ -1,6 +1,6 @@
 % yahapj.bst -- yet another ApJ bibtex style file
 % Git SHA1 hash: $Id$
-% Reference repository: https://github.com/pkgw/yahapj/
+% Reference repository: https://github.com/pkgw/tex-stuff/
 %
 % The main features compared to other ApJ style files is that ArXiV
 % and DOI links are added. ArXiV information is only shown for those
@@ -19,6 +19,11 @@
 % README.md in the Git repository from which it was obtained. You can
 % track these down using the SHA1 hash listed at the top of this file.
 % (Googling for the hash value should hopefully be sufficient.)
+%
+% This file is in the "BST" language, a unique reverse-polish-notation
+% language. The best and only reference of which I am aware is Part 4 of the
+% document "Tame the BeaST", by Nicolas Markey:
+% https://ctan.org/pkg/tamethebeast/
 
 ENTRY
   { address
@@ -919,20 +924,6 @@ FUNCTION {format.publisher}
   output
 }
 
-STRINGS {oldname}
-
-FUNCTION {name.or.dash}
-{ 's :=
-   oldname empty$
-     { s 'oldname := s }
-     { s oldname =
-         { "---" }
-         { s 'oldname := s }
-       if$
-     }
-   if$
-}
-
 FUNCTION {format.edn.btitle} % Title should be on stack.
 { duplicate$ empty$ edition empty$ or
     'skip$
@@ -1021,7 +1012,6 @@ FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  name.or.dash
   format.date "year" output.check
   crossref missing$
     { format.journal "journal" output.check
@@ -1046,10 +1036,8 @@ FUNCTION {book}
   author empty$
     { format.editors "author and editor" output.check
       editor format.key output
-      name.or.dash
     }
     { format.authors output.nonnull
-      name.or.dash
       crossref missing$
         { "author and editor" editor either.or.check }
         'skip$
@@ -1069,7 +1057,6 @@ FUNCTION {booklet}
 { output.bibitem
   format.authors output
   author format.key output
-  name.or.dash
   format.date "year" output.check
   format.title "title" output.check
   howpublished output
@@ -1084,10 +1071,8 @@ FUNCTION {inbook}
   author empty$
     { format.editors "author and editor" output.check
       editor format.key output
-      name.or.dash
     }
     { format.authors output.nonnull
-      name.or.dash
       crossref missing$
         { "author and editor" editor either.or.check }
         'skip$
@@ -1107,7 +1092,6 @@ FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  name.or.dash
   format.date "year" output.check
   bbl.in " " * booktitle format.full.book.spec *
   maybe.doi.link.prepend maybe.doi.link.end output
@@ -1145,7 +1129,6 @@ FUNCTION {manual}
 { output.bibitem
   format.authors output
   author format.key output
-  name.or.dash
   format.date "year" output.check
   format.btitle "title" output.check
   format.edition output
@@ -1160,7 +1143,6 @@ FUNCTION {mastersthesis}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  name.or.dash
   format.date "year" output.check
   bbl.mthesis format.thesis.type output.nonnull
   school "school" output.check
@@ -1174,7 +1156,6 @@ FUNCTION {misc}
 { output.bibitem
   format.authors output
   author format.key output
-  name.or.dash
   format.date "year" output.check
   format.title output
   howpublished output
@@ -1187,7 +1168,6 @@ FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  name.or.dash
   format.date "year" output.check
   bbl.phdthesis format.thesis.type output.nonnull
   school "school" output.check
@@ -1204,7 +1184,6 @@ FUNCTION {proceedings}
       organization format.key output }
     { format.editors output }
   if$
-  name.or.dash
   format.date "year" output.check
   title format.full.book.spec output
   publisher empty$ not      % No need for warning if no pub.
@@ -1226,7 +1205,6 @@ FUNCTION {techreport}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  name.or.dash
   format.date "year" output.check
   format.title "title" output.check
   format.tr.number output.nonnull
@@ -1241,7 +1219,6 @@ FUNCTION {unpublished}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  name.or.dash
   format.date "year" output.check
   format.eprint output
   format.note "note" output.check
